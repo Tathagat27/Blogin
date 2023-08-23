@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <%- include('./partials/head.ejs') %>
     <title>Home Page</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <%- include('./partials/nav.ejs') %>
 
-    <%= JSON.stringify(user) %>
+    <div class="container mt-5">
+      <div class="row row-cols-3">
+        <% blogs.forEach(blog => { %>
+            <div class="col">
+
+                <div class="card" style="width: 18rem; margin: 2rem">
+                  <img
+                    src="<%= blog.coverImageURL %>"
+                    class="card-img-top"
+                    alt="cover image"
+                    style="width: 18rem; height: 15rem;"
+                  />
+                  <div class="card-body">
+                    <h5 class="card-title"><%= ((blog.title).length > 25) ? (blog.title).substring(0, 25) + '...' : (blog.title) %></h5>
+        
+                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
+                  </div>
+                </div>
+            </div>
+        <% }) %>
+      </div>
+    </div>
 
     <%- include('./partials/script.ejs') %>
-</body>
+  </body>
 </html>
